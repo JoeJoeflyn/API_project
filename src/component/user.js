@@ -1,7 +1,8 @@
+import { formatDistanceToNow } from "date-fns";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function UsersAPI() {
+export default function User() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState();
@@ -13,8 +14,6 @@ export default function UsersAPI() {
   const [showModal, setShowModal] = useState(false);
   // get users api
   useEffect(() => {
-    // const fetchData = async () => {
-
     setLoading(true);
     fetch(`https://6315b28e33e540a6d3823a08.mockapi.io/blogs?p=${pagin}&l=5`)
       .then((response) => {
@@ -27,16 +26,9 @@ export default function UsersAPI() {
       .catch((err) => {
         return <h1>{err}</h1>;
       });
-
-    // const dataJson = await bigData.json();
-    // console.log(dataJson);
-    // };
-    // fetchData().catch(console.error);
   }, [pagin]);
   // UI effect when a post have been deleted
   useEffect(() => {
-    // const fetchData = async () => {
-
     setLoading(true);
     fetch(`https://6315b28e33e540a6d3823a08.mockapi.io/blogs?p=${pagin}&l=5`)
       .then((response) => {
@@ -50,10 +42,7 @@ export default function UsersAPI() {
         return <h1>{err}</h1>;
       });
 
-    // const dataJson = await bigData.json();
-    // console.log(dataJson);
-    // };
-    // fetchData().catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deleted]);
 
   //
@@ -386,7 +375,10 @@ export default function UsersAPI() {
                           <p className="text-gray-900 leading-none">
                             {sgData.name}
                           </p>
-                          <p className="text-gray-600">{sgData.createdAt}</p>
+                          <p className="text-gray-600">
+                            {formatDistanceToNow(new Date(sgData.createdAt))}{" "}
+                            ago
+                          </p>
                         </div>
                       </div>
                       <div className="mb-5">

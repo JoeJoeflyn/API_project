@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-export default function SingleProductAPI() {
+export default function UserDetail() {
   let { userId } = useParams();
-  console.log(userId);
+
   const [sgData, setSgData] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -14,7 +14,6 @@ export default function SingleProductAPI() {
       .then((data) => {
         setSgData(data);
         setLoading(false);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
